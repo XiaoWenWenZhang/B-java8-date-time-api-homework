@@ -10,7 +10,19 @@ import java.time.LocalDate;
  */
 public class Practice1 {
 
-  public static long getDaysBetweenNextLaborDay(LocalDate date) {
-    return 0;
-  }
+    public static long getDaysBetweenNextLaborDay(LocalDate date) {
+        long interval;
+        int year = date.getYear();
+        int month = date.getMonthValue();
+        int day = date.getDayOfMonth();
+        if (month > 5 || (month == 5 && day > 1)) {
+            LocalDate labor = LocalDate.of(year + 1, 5, 1);
+            interval = labor.toEpochDay() - date.toEpochDay();
+            System.out.println(interval);
+        } else {
+            LocalDate labor = LocalDate.of(year, 5, 1);
+            interval = labor.toEpochDay() - date.toEpochDay();
+        }
+        return interval;
+    }
 }
